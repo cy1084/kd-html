@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form onsubmit="return check()">
+  <label for="h1">보석십자수</label>
+  <input type="checkbox" id="h1" name="hobby">
+  <label for="h2">한강가기</label>
+  <input type="checkbox" id="h2" name="hobby">
+  <label for="h3">피아노</label>
+  <input type="checkbox" id="h3" name="hobby">
+  <label for="h4">음주</label>
+  <input type="checkbox" id="h4" name="hobby">
+  <button>취미 선택</button>
+</form>
+<script>
+  function check(){
+    document.getElementById('h1'); //element로 id가 h1인 것을 가져옴, id가 중복된다면 제일 처음 선언된 것(id는 원래 중복 불가능)
+    document.getElementsByName('hobby');//name은 중복 가능
+    document.getElementsByTagName('input');
+
+    const hobbyOdjs=document.querySelectorAll('[name=hobby]:checked'); //체크된 상태
+    if(hobbyOdjs.length<2){
+      alert('취미는 2개 이상 선택해야 합니다.');
+      return false;
+    }
+  }
+</script>
+</body>
+</html>
