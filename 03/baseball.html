@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getRandom(start,end){
+      return Math.floor(Math.random()*(end+1))+start;
+    }
+    const arr=[];
+    window.onload=function(){ //-> 이거 있으면 div보다 먼저 선언해도 실행 됨! 실행하기 전에 코드 다 읽고 시작하라는 뜻
+    const gDiv=document.querySelector('#gDiv');
+    //console.log(gDiv);
+    //null -> script를 실행할 땐 밑에 div가 없기 때문
+
+    gDiv.style.display='none';
+    const sDiv=document.querySelector('#sDiv');
+
+    document.querySelector('#sBtn').onclick=function(){
+      sDiv.style.display='none';
+      gDiv.style.display='block';
+
+      while(arr.length<3){
+          const rNum=getRandom(0,9);
+          if(!arr.includes(rNum)){
+            arr.push(rNum);
+          }
+        }
+        console.log(arr);
+      }
+
+    document.querySelector('#gBtn').onclick=function(){
+      const numObj1=document.querySelector('#num1');
+      const num1=parseInt(numObj1.value);
+      let strike=0;
+      let ball=0;
+
+      if(arr[0]===num1){
+        strike++;
+      }
+      if(arr[1]===num1){
+        ball++;
+      }
+      if(arr[2]===num1){
+        ball++;
+      }
+
+      const numObj2=document.querySelector('#num2');
+      const num2=parseInt(numObj2.value);
+      if(arr[0]===num2){
+        strike++;
+      }
+      if(arr[1]===num2){
+        ball++;
+      }
+      if(arr[2]===num2){
+        ball++;
+      }
+
+      const numObj3=document.querySelector('#num3');
+      const num3=parseInt(numObj3.value);
+      if(arr[0]===num3){
+        strike++;
+      }
+      if(arr[1]===num3){
+        ball++;
+      }
+      if(arr[2]===num3){
+        ball++;
+      }
+      alert(`${strike}`+'strike, '+`${ball}`+' ball');
+      
+    }
+  
+      }
+    
+
+  </script>
+  <div id="sDiv">
+    <button id="sBtn">시작</button>
+  </div>
+  <div id="gDiv">
+    <input type="number" min="0" max="9" id="num1">
+    <input type="number" min="0" max="9" id="num2">
+    <input type="number" min="0" max="9" id="num3">
+  <button id="gBtn">맞추기</button>
+
+  </div>
+  
+</body>
+</html>

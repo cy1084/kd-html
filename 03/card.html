@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  img{
+    padding:1;
+    margin:1;
+    width:50px;
+    height:100px;
+  }
+</style>
+</head>
+<body>
+ 
+  <button onclick="startCard()">시작</button>
+  
+  <div id="table">
+  </div>
+  <script>
+    const arr=[]
+    function reverse(obj){
+      const openImgs=document.querySelector('img[data-open=0]');
+      if(openImgs.length===2){
+        return;
+      }
+      //if(openImgs.length===1){
+      //  obj.setAttribute('data-open','0');
+      //}
+      console.log(obj);
+      const num=obj.getAttribute('data-num');
+      const imgPath=`/img/cards/${num}.png`;
+      obj.src=imgPath;
+      obj.setAttribute('data-open','1'); //data-open을 0에서 1로 바꿔줌
+    }
+    
+    function startCard(){
+      let html='<table>';
+      let cnt=0;
+      
+      for(let i=1;i<5;i++){
+        html+='<tr>';
+        for(let j=1;j<14;j++){
+          html+=`<td><img src ="/img/cards/back.png" data-num="${arr[cnt++]}" onclick="reverse(this)" data-open="0"></td>`;       
+        }
+        html+='</td>';
+        
+      }
+      html+='</table>';
+      document.querySelector('#table').innerHTML=html; 
+      
+    }
+    
+   
+  </script>
+  
+</body>
+</html>
